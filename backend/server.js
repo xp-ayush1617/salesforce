@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const multer = require('multer');
@@ -5,16 +6,13 @@ const xlsx = require('xlsx');
 const mysql = require('mysql2/promise');
 const path = require('path');
 const fs = require('fs');
-const dotenv = require('dotenv');
-
-dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: process.env.CORS_ORIGIN || '*' }));
 app.use(express.json());
 
 // Ensure uploads folder exists
-const uploadDir = path.join(__dirname, 'uploads');
+const uploadDir = path.join(__dirname, process.env.UPLOAD_DIR);
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
 }
@@ -227,7 +225,10 @@ function prefixWhereClause(prefix) {
   return `AND OpportunityID LIKE '${prefix}%'`;
 }
 
-app.listen(process.env.PORT || 4000, () => console.log(`Backend running on port ${process.env.PORT || 4000}`));
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 // Upload Leads Excel
 app.post('/upload/leads', upload.single('file'), async (req, res) => {

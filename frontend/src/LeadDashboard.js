@@ -399,8 +399,6 @@ function LeadOwnerChart({ data, chartRef }) {
 }
 
 function LeadDashboard() {
-  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
-
   // Add new state for lead types
   const [leadTypes, setLeadTypes] = useState(['all']);
   const [selectedType, setSelectedType] = useState('all');
@@ -464,6 +462,7 @@ function LeadDashboard() {
   // Table fetch
   const reloadLeads = () => {
     setLoading(true);
+    const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8003';
     fetch(`${apiBaseUrl}/leads`)
       .then(res => {
         if (!res.ok) throw new Error('Network response was not ok');
@@ -483,7 +482,7 @@ function LeadDashboard() {
   // Modified reloadCharts with prefix filtering for all endpoints
   const reloadCharts = () => {
     const prefix = selectedType === 'all' ? '' : `?prefix=${selectedType}`;
-    
+    const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8003';
     Promise.all([
       fetch(`${apiBaseUrl}/leads/status-over-time${prefix}`).then(res => res.json()),
       fetch(`${apiBaseUrl}/leads/industry-performance${prefix}`).then(res => res.json()),
@@ -510,6 +509,7 @@ function LeadDashboard() {
 
   // Fetch lead types
   useEffect(() => {
+    const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8003';
     fetch(`${apiBaseUrl}/leads/types`)
       .then(res => res.json())
       .then(types => {
@@ -523,7 +523,7 @@ function LeadDashboard() {
 
   // SSE: Listen for backend events and trigger refresh
   useEffect(() => {
-    const evtSource = new EventSource(`${apiBaseUrl}/events`);
+    const evtSource = new EventSource('http://172.26.0.217:4000/events');
     evtSource.onmessage = (event) => {
       try {
         const data = JSON.parse(event.data);
@@ -542,6 +542,7 @@ function LeadDashboard() {
   const handleExcelUpload = async (file) => {
     const formData = new FormData();
     formData.append('file', file);
+    const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8003';
     await fetch(`${apiBaseUrl}/upload/leads`, {
       method: 'POST',
       body: formData,

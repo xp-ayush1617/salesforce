@@ -31,6 +31,7 @@ function UploadExcel({ onUploadSuccess }) {
     }
     setLoading(true);
     try {
+      // Use environment variable for API base URL
       const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
       const res = await fetch(`${apiBaseUrl}/upload/${endpoint}`, {
         method: 'POST',

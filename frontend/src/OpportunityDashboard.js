@@ -33,7 +33,6 @@ function getFilterQuery(filters) {
 }
 
 function OpportunityDashboard() {
-  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
   const [tab, setTab] = useState('visual');
   const [refreshKey, setRefreshKey] = useState(0);
 
@@ -76,6 +75,7 @@ function OpportunityDashboard() {
     setLoading(true);
     const prefixParam = getPrefixParam(oppPrefix);
     const filterQuery = getFilterQuery(filters);
+    const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8003';
     Promise.all([
       fetch(`${apiBaseUrl}/opportunities${prefixParam}${filterQuery}`).then(res => res.json()),
       fetch(`${apiBaseUrl}/opportunities/owner-performance${prefixParam}${filterQuery}`).then(res => res.json()),
@@ -108,7 +108,7 @@ function OpportunityDashboard() {
 
   // SSE: Listen for backend events and trigger refresh
   useEffect(() => {
-    const evtSource = new EventSource(`${apiBaseUrl}/events`);
+    const evtSource = new EventSource('http://172.26.0.217:4000/events');
     evtSource.onmessage = (event) => {
       try {
         const data = JSON.parse(event.data);
@@ -175,7 +175,7 @@ function OpportunityDashboard() {
   const handleExcelUpload = async (file) => {
     const formData = new FormData();
     formData.append('file', file);
-    await fetch(`${apiBaseUrl}/upload/opportunities`, {
+    await fetch('http://172.26.0.217:4000/upload/opportunities', {
       method: 'POST',
       body: formData,
     });
