@@ -351,6 +351,7 @@ app.get('/leads', async (req, res) => {
     await conn.end();
     res.json(rows);
   } catch (err) {
+    console.error('Database error:', err); // Improved error logging
     res.status(500).json({ error: err.message });
   }
 });
@@ -363,6 +364,7 @@ app.get('/opportunities', async (req, res) => {
     await conn.end();
     res.json(rows);
   } catch (err) {
+    console.error('Database error:', err); // Improved error logging
     res.status(500).json({ error: err.message });
   }
 });
@@ -400,6 +402,7 @@ app.get('/opportunities/owner-performance', async (req, res) => {
     await conn.end();
     res.json(rows);
   } catch (err) {
+    console.error('Database error:', err); // Improved error logging
     res.status(500).json({ error: err.message });
   }
 });
@@ -421,6 +424,7 @@ app.get('/opportunities/stage-performance', async (req, res) => {
     await conn.end();
     res.json(rows);
   } catch (err) {
+    console.error('Database error:', err); // Improved error logging
     res.status(500).json({ error: err.message });
   }
 });
@@ -442,6 +446,7 @@ app.get('/opportunities/industry-performance', async (req, res) => {
     await conn.end();
     res.json(rows);
   } catch (err) {
+    console.error('Database error:', err); // Improved error logging
     res.status(500).json({ error: err.message });
   }
 });
@@ -462,6 +467,7 @@ app.get('/opportunities/state-quoted-value', async (req, res) => {
     await conn.end();
     res.json(rows);
   } catch (err) {
+    console.error('Database error:', err); // Improved error logging
     res.status(500).json({ error: err.message });
   }
 });
@@ -483,6 +489,7 @@ app.get('/opportunities/over-time', async (req, res) => {
     await conn.end();
     res.json(rows);
   } catch (err) {
+    console.error('Database error:', err); // Improved error logging
     res.status(500).json({ error: err.message });
   }
 });
@@ -504,6 +511,7 @@ app.get('/opportunities/proposal-performance', async (req, res) => {
     await conn.end();
     res.json(rows);
   } catch (err) {
+    console.error('Database error:', err); // Improved error logging
     res.status(500).json({ error: err.message });
   }
 });
@@ -526,6 +534,7 @@ app.get('/opportunities/owner-performance', async (req, res) => {
     await conn.end();
     res.json(rows);
   } catch (err) {
+    console.error('Database error:', err); // Improved error logging
     res.status(500).json({ error: err.message });
   }
 });
@@ -548,6 +557,7 @@ app.get('/opportunities/stage-performance', async (req, res) => {
     await conn.end();
     res.json(rows);
   } catch (err) {
+    console.error('Database error:', err); // Improved error logging
     res.status(500).json({ error: err.message });
   }
 });
@@ -570,6 +580,7 @@ app.get('/opportunities/industry-performance', async (req, res) => {
     await conn.end();
     res.json(rows);
   } catch (err) {
+    console.error('Database error:', err); // Improved error logging
     res.status(500).json({ error: err.message });
   }
 });
@@ -591,6 +602,7 @@ app.get('/opportunities/state-quoted-value', async (req, res) => {
     await conn.end();
     res.json(rows);
   } catch (err) {
+    console.error('Database error:', err); // Improved error logging
     res.status(500).json({ error: err.message });
   }
 });
@@ -613,6 +625,7 @@ app.get('/opportunities/over-time', async (req, res) => {
     await conn.end();
     res.json(rows);
   } catch (err) {
+    console.error('Database error:', err); // Improved error logging
     res.status(500).json({ error: err.message });
   }
 });
@@ -635,6 +648,7 @@ app.get('/opportunities/proposal-performance', async (req, res) => {
     await conn.end();
     res.json(rows);
   } catch (err) {
+    console.error('Database error:', err); // Improved error logging
     res.status(500).json({ error: err.message });
   }
 });
@@ -673,6 +687,7 @@ app.get('/opportunities/closed-won-stacked', async (req, res) => {
     await conn.end();
     res.json(rows);
   } catch (err) {
+    console.error('Database error:', err); // Improved error logging
     res.status(500).json({ error: err.message });
   }
 });
@@ -711,6 +726,7 @@ app.get('/opportunities/closed-won-stacked-industry', async (req, res) => {
     await conn.end();
     res.json(rows);
   } catch (err) {
+    console.error('Database error:', err); // Improved error logging
     res.status(500).json({ error: err.message });
   }
 });
@@ -729,6 +745,7 @@ app.get('/leads/types', async (req, res) => {
     await conn.end();
     res.json(rows.map(r => r.leadPrefix));
   } catch (err) {
+    console.error('Database error:', err); // Improved error logging
     res.status(500).json({ error: err.message });
   }
 });
@@ -755,6 +772,7 @@ app.get('/leads/status-over-time', async (req, res) => {
     await conn.end();
     res.json(rows);
   } catch (err) {
+    console.error('Database error:', err); // Improved error logging
     res.status(500).json({ error: err.message });
   }
 });
@@ -781,6 +799,7 @@ app.get('/leads/industry-performance', async (req, res) => {
     await conn.end();
     res.json(rows);
   } catch (err) {
+    console.error('Database error:', err); // Improved error logging
     res.status(500).json({ error: err.message });
   }
 });
@@ -807,6 +826,7 @@ app.get('/leads/region-performance', async (req, res) => {
     await conn.end();
     res.json(rows);
   } catch (err) {
+    console.error('Database error:', err); // Improved error logging
     res.status(500).json({ error: err.message });
   }
 });
@@ -833,6 +853,7 @@ app.get('/leads/owner-performance', async (req, res) => {
     await conn.end();
     res.json(rows);
   } catch (err) {
+    console.error('Database error:', err); // Improved error logging
     res.status(500).json({ error: err.message });
   }
 });
