@@ -94,7 +94,7 @@ function StagePerformanceChart({ prefix }) {
 
   useEffect(() => {
     // Use environment variable for API base URL
-    const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8003';
+    const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
     fetch(`${apiBaseUrl}/opportunities/stage-performance${prefix && prefix !== 'ALL' ? `?prefix=${prefix}` : ''}`)
       .then(res => res.json())
       .then(setData)
@@ -191,7 +191,9 @@ function OwnerPerformanceChartInner({ prefix }) {
   const chartRef = useRef();
 
   useEffect(() => {
-    fetch(`http://172.26.0.217:4000/opportunities/owner-performance${prefix && prefix !== 'ALL' ? `?prefix=${prefix}` : ''}`)
+    // Use environment variable for API base URL
+    const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+    fetch(`${apiBaseUrl}/opportunities/owner-performance${prefix && prefix !== 'ALL' ? `?prefix=${prefix}` : ''}`)
       .then(res => res.json())
       .then(setData)
       .catch(console.error);
@@ -403,7 +405,9 @@ function IndustryPerformanceChart({ prefix }) {
   const chartRef = useRef();
 
   useEffect(() => {
-    fetch(`http://172.26.0.217:4000/opportunities/industry-performance${prefix && prefix !== 'ALL' ? `?prefix=${prefix}` : ''}`)
+    // Use environment variable for API base URL
+    const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+    fetch(`${apiBaseUrl}/opportunities/industry-performance${prefix && prefix !== 'ALL' ? `?prefix=${prefix}` : ''}`)
       .then(res => res.json())
       .then(setData)
       .catch(console.error);
@@ -626,7 +630,9 @@ function StateQuotedValueChart({ prefix }) {
   const chartRef = useRef();
 
   useEffect(() => {
-    fetch(`http://172.26.0.217:4000/opportunities/state-quoted-value${prefix && prefix !== 'ALL' ? `?prefix=${prefix}` : ''}`)
+    // Use environment variable for API base URL
+    const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+    fetch(`${apiBaseUrl}/opportunities/state-quoted-value${prefix && prefix !== 'ALL' ? `?prefix=${prefix}` : ''}`)
       .then(res => res.json())
       .then(setData)
       .catch(console.error);
@@ -716,7 +722,9 @@ function OpportunitiesOverTimeChart({ prefix }) {
   const chartRef = useRef();
 
   useEffect(() => {
-    fetch(`http://172.26.0.217:4000/opportunities/over-time${prefix && prefix !== 'ALL' ? `?prefix=${prefix}` : ''}`)
+    // Use environment variable for API base URL
+    const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+    fetch(`${apiBaseUrl}/opportunities/over-time${prefix && prefix !== 'ALL' ? `?prefix=${prefix}` : ''}`)
       .then(res => res.json())
       .then(setData)
       .catch(console.error);
@@ -806,7 +814,9 @@ function ProposalOwnerChart({ prefix }) {
   const chartRef = useRef();
 
   useEffect(() => {
-    fetch(`http://172.26.0.217:4000/opportunities/proposal-performance${prefix && prefix !== 'ALL' ? `?prefix=${prefix}` : ''}`)
+    // Use environment variable for API base URL
+    const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+    fetch(`${apiBaseUrl}/opportunities/proposal-performance${prefix && prefix !== 'ALL' ? `?prefix=${prefix}` : ''}`)
       .then(res => res.json())
       .then(setData)
       .catch(console.error);
@@ -898,11 +908,13 @@ function ClosedWonStackedChart({ prefix }) {
   const chartRef = useRef();
 
   useEffect(() => {
+    // Use environment variable for API base URL
+    const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
     const endpoint = viewType === 'owner' 
       ? '/opportunities/closed-won-stacked'
       : '/opportunities/closed-won-stacked-industry';
       
-    fetch(`http://172.26.0.217:4000${endpoint}${prefix && prefix !== 'ALL' ? `?prefix=${prefix}` : ''}`)
+    fetch(`${apiBaseUrl}${endpoint}${prefix && prefix !== 'ALL' ? `?prefix=${prefix}` : ''}`)
       .then(res => res.json())
       .then(apiData => {
         const transformedData = Object.values(
